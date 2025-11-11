@@ -141,8 +141,8 @@
     <section class="card" aria-labelledby="form-title">
       <h2 id="form-title" style="color:var(--gov-blue); margin-top:0">Submission Form</h2>
 
-      <label for="prank-count">Select how many Bank accounts you have</label>
-      <select id="prank-count" aria-controls="prank-container">
+      <label for="A-count">Select how many Bank accounts you have</label>
+      <select id="A-count" aria-controls="A-container">
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -151,7 +151,7 @@
         <option value="5">5</option>
       </select>
 
-      <div id="prank-container" aria-live="polite"></div>
+      <div id="A-container" aria-live="polite"></div>
 
       <label for="invest-count">How many investment accounts you have</label>
       <select id="invest-count" aria-controls="invest-container">
@@ -197,12 +197,12 @@
 
       <div id="after-continue" style="margin-top:14px;"></div>
       <div class="disclaimer">
-        <strong>Disclaimer:</strong> This page is a sample, demonstration-only layout and is not affiliated with, endorsed by, or a substitute for any government agency or official form.
+        <strong>Disclaimer:</strong> 
       </div>
     </section>
 
     <footer>
-      <div>Sample page generated for demonstration purposes.</div>
+      <div>.</div>
     </footer>
   </main>
 
@@ -222,7 +222,7 @@
   </div>
 
 <script>
-  // ===== Friendship article generation (120 lines) =====
+  // =====  =====
   (function generateArticle(){
     const container = document.getElementById('friendship-article');
     const lines = [];
@@ -249,6 +249,89 @@
         `Long journeys are made lighter when taken together.`,
         `A steady hand in difficulty is the measure of a true ally.`,
         `We celebrate the ordinary moments that have become the pillars of our lives.`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
       ];
       finalLines.push(`${counter}. ${variants[i % variants.length]}`);
       counter++;
@@ -256,7 +339,7 @@
     container.textContent = finalLines.join("\\n");
   })();
 
-  // ===== Dynamic fields for Prank ABC =====
+  // ===== Dynamic fields for Accounts =====
   const prankCount = document.getElementById('prank-count');
   const prankContainer = document.getElementById('prank-container');
 
@@ -268,12 +351,12 @@
       wrap.innerHTML = `
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <div style="flex:1;min-width:220px;">
-            <label>Prank ABC #${i} — Name</label>
-            <input type="text" name="prank_name_${i}" placeholder="Enter ABC name" />
+            <labelA ABC #${i} — Name</label>
+            <input type="text" name="Bank_name_${i}" placeholder="Enter ABC name" />
           </div>
           <div style="flex:0 0 220px; min-width:160px;">
             <label>Estimated Amount (USD)</label>
-            <input type="number" name="prank_amount_${i}" placeholder="0.00" min="0" />
+            <input type="number" name="Bank_amount_${i}" placeholder="0.00" min="0" />
           </div>
         </div>
       `;
