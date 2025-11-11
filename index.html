@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Submit FINCO Statement to FFN</title>
+<style>
+  :root{
+    --gov-blue:#0b3d91;
+    --bg:#f4f6f8;
+    --card:#ffffff;
+    --muted:#596273;
+    --accent:#2a7ae2;
+    --danger:#b00020;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:#111827;
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    background: linear-gradient(90deg,var(--gov-blue), #164a9b 60%);
+    color:white;
+    padding:24px 28px;
+    box-shadow:0 1px 0 rgba(0,0,0,0.06);
+  }
+  .container{
+    max-width:1000px;
+    margin:22px auto;
+    padding:20px;
+  }
+  h1{
+    margin:0;
+    font-size:20px;
+    letter-spacing:0.4px;
+  }
+  .subhead{
+    margin-top:6px;
+    color: #d7e6ff;
+    font-size:13px;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:8px;
+    padding:18px;
+    margin-top:18px;
+    box-shadow:0 6px 18px rgba(12,18,28,0.06);
+  }
+
+  label{display:block;font-weight:600;margin-bottom:6px;color:var(--gov-blue);}
+  select, input[type="text"], input[type="number"], textarea{
+    width:100%;
+    padding:10px 12px;
+    border-radius:6px;
+    border:1px solid #d1d7df;
+    margin-bottom:12px;
+    font-size:14px;
+    box-sizing:border-box;
+  }
+  .row{display:flex; gap:12px; align-items:flex-start;}
+  .col{flex:1;}
+  .small{flex:0 0 160px;}
+  .generated-box{
+    border:1px dashed #e2e8f0;
+    padding:12px;
+    border-radius:6px;
+    margin-bottom:10px;
+    background:#fbfdff;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:10px 14px;
+    background:var(--accent);
+    color:white;
+    border-radius:6px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    font-weight:700;
+  }
+  .btn.secondary{background:#eef3ff; color:var(--gov-blue); border:1px solid #d6e2ff; font-weight:600;}
+  .notice{
+    border-left:4px solid var(--danger);
+    padding:12px;
+    background:#fff5f6;
+    color:var(--danger);
+    margin-top:12px;
+    border-radius:6px;
+  }
+
+  /* modal */
+  .modal-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index:1000; }
+  .modal{ background:white; padding:20px; border-radius:8px; width:720px; max-width:94%; box-shadow:0 12px 40px rgba(4,12,28,0.3); }
+  .modal h2{ margin-top:0; color:var(--gov-blue); }
+  .small-meta{ color:var(--muted); font-size:13px; margin-bottom:6px; }
+  footer{ color:var(--muted); font-size:13px; margin-top:18px; text-align:center; }
+
+  pre.article{
+    white-space:pre-wrap;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    line-height:1.38;
+    max-height:320px;
+    overflow:auto;
+    padding:12px;
+    border-radius:6px;
+    border:1px solid #e6eefc;
+    background:#fbfdff;
+  }
+
+  .disclaimer{
+    margin-top:14px;
+    font-size:13px;
+    color:#334155;
+    background:#f8fafc;
+    border:1px solid #e6eefc;
+    padding:10px 12px;
+    border-radius:6px;
+  }
+
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Submit FINCO Statement to FFN</h1>
+      <div class="subhead">Official submission portal — Demonstration layout (sample only)</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" aria-labelledby="article-title">
+      <h2 id="article-title" style="margin:0 0 12px 0; color:var(--gov-blue)">Friendship Day — Observance and Reflections</h2>
+      <div class="small-meta">Below is a 120-line article composed for Friendship Day. (Sample text for demonstration.)</div>
+      <pre id="friendship-article" class="article" aria-live="polite"></pre>
+    </section>
+
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title" style="color:var(--gov-blue); margin-top:0">Submission Form</h2>
+
+      <label for="prank-count">Select how many Prank ABC you have</label>
+      <select id="prank-count" aria-controls="prank-container">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+      <div id="prank-container" aria-live="polite"></div>
+
+      <label for="invest-count">How many investment accounts you have</label>
+      <select id="invest-count" aria-controls="invest-container">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+      <div id="invest-container" aria-live="polite"></div>
+
+      <label for="act-charged">Select the act charged on your identity</label>
+      <select id="act-charged">
+        <option value="">-- Select an act --</option>
+        <option value="1">1. Wire fraud (18 U.S.C. § 1343)</option>
+        <option value="2">2. Identity theft (18 U.S.C. § 1028)</option>
+        <option value="3">3. Money laundering (18 U.S.C. § 1956)</option>
+        <option value="4">4. Bank fraud (18 U.S.C. § 1344)</option>
+        <option value="5">5. Credit card fraud (18 U.S.C. § 1029)</option>
+        <option value="6">6. Tax evasion (26 U.S.C. § 7201)</option>
+        <option value="7">7. Counterfeiting (18 U.S.C. § 471)</option>
+        <option value="8">8. Forgery (18 U.S.C. § 471 et seq.)</option>
+        <option value="9">9. Embezzlement (state or federal statutes)</option>
+        <option value="10">10. Conspiracy (18 U.S.C. § 371)</option>
+        <option value="11">11. Drug distribution (21 U.S.C. § 841)</option>
+        <option value="12">12. Human trafficking (18 U.S.C. § 1591)</option>
+        <option value="13">13. Terrorism-related offense (various federal statutes)</option>
+        <option value="14">14. Cybercrime — unauthorised computer access (18 U.S.C. § 1030)</option>
+        <option value="15">15. Child pornography distribution (18 U.S.C. § 2252A)</option>
+        <option value="16">16. Stalking and harassment (18 U.S.C. § 2261A)</option>
+        <option value="17">17. Hate crimes (various federal statutes)</option>
+        <option value="18">18. Obstruction of justice (18 U.S.C. § 1512)</option>
+        <option value="19">19. Assault (state or federal statutes)</option>
+        <option value="20">20. Aggravated robbery (state or federal statutes)</option>
+      </select>
+
+      <div style="margin-top:12px;">
+        <button id="continue-btn" class="btn">Continue</button>
+        <button id="reset-btn" class="btn secondary" type="button">Reset Form</button>
+      </div>
+
+      <div id="after-continue" style="margin-top:14px;"></div>
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> This page is a sample, demonstration-only layout and is not affiliated with, endorsed by, or a substitute for any government agency or official form.
+      </div>
+    </section>
+
+    <footer>
+      <div>Sample page generated for demonstration purposes.</div>
+    </footer>
+  </main>
+
+  <!-- Modal for official notice -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h2>Official Notice — Important Legal Advisory</h2>
+      <div class="small-meta">United States — Compliance and Enforcement Advisory</div>
+      <p id="modal-body" style="color:#111827; line-height:1.5; margin:10px 0 16px 0;">
+        <!-- inserted dynamically -->
+      </p>
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button id="modal-close" class="btn secondary">Close</button>
+        <button id="modal-ack" class="btn">Acknowledge</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // ===== Friendship article generation (120 lines) =====
+  (function generateArticle(){
+    const container = document.getElementById('friendship-article');
+    const lines = [];
+    for(let i=1;i<=120;i++){
+      // Create varied short lines about friendship
+      lines.push(`${i}. Friendship Day: a day to honour companions who stand with us through small hours and large decisions.`);
+      // Slightly vary lines to avoid complete repetition every time:
+      if(i % 10 === 0) lines.push(`--- Reflection ${i}: True friends listen before they advise, and they act with courage when courage is required.`);
+    }
+    // Make sure exactly 120 visible lines (we added some extra lines, so trim or ensure)
+    // We'll build an array of 120 meaningful short sentences:
+    const finalLines = [];
+    let counter = 1;
+    for(let i=0; finalLines.length < 120; i++){
+      // Create sentence variations
+      const variants = [
+        `On Friendship Day we remember those who made us brave.`,
+        `A friend is the echo of our better self.`,
+        `Simple acts of kindness are often the truest markers of friendship.`,
+        `The gift of presence outweighs the cost of gold.`,
+        `Shared laughter is an account we draw from in hard months.`,
+        `Friendship asks little and gives much.`,
+        `In quiet rooms, a friend's voice can be the doorway to honesty.`,
+        `Long journeys are made lighter when taken together.`,
+        `A steady hand in difficulty is the measure of a true ally.`,
+        `We celebrate the ordinary moments that have become the pillars of our lives.`
+      ];
+      finalLines.push(`${counter}. ${variants[i % variants.length]}`);
+      counter++;
+    }
+    container.textContent = finalLines.join("\\n");
+  })();
+
+  // ===== Dynamic fields for Prank ABC =====
+  const prankCount = document.getElementById('prank-count');
+  const prankContainer = document.getElementById('prank-container');
+
+  function renderPrankBoxes(n){
+    prankContainer.innerHTML = '';
+    for(let i=1;i<=n;i++){
+      const wrap = document.createElement('div');
+      wrap.className='generated-box';
+      wrap.innerHTML = `
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:220px;">
+            <label>Prank ABC #${i} — Name</label>
+            <input type="text" name="prank_name_${i}" placeholder="Enter ABC name" />
+          </div>
+          <div style="flex:0 0 220px; min-width:160px;">
+            <label>Estimated Amount (USD)</label>
+            <input type="number" name="prank_amount_${i}" placeholder="0.00" min="0" />
+          </div>
+        </div>
+      `;
+      prankContainer.appendChild(wrap);
+    }
+  }
+
+  prankCount.addEventListener('change', e => {
+    renderPrankBoxes(parseInt(e.target.value,10));
+  });
+
+  // initialize with default selected
+  renderPrankBoxes(parseInt(prankCount.value,10));
+
+  // ===== Dynamic fields for Investment Accounts =====
+  const investCount = document.getElementById('invest-count');
+  const investContainer = document.getElementById('invest-container');
+
+  function renderInvestBoxes(n){
+    investContainer.innerHTML = '';
+    for(let i=1;i<=n;i++){
+      const wrap = document.createElement('div');
+      wrap.className='generated-box';
+      wrap.innerHTML = `
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:220px;">
+            <label>Investment Account #${i} — Institution</label>
+            <input type="text" name="invest_institution_${i}" placeholder="Enter institution name" />
+          </div>
+          <div style="flex:0 0 220px; min-width:160px;">
+            <label>Account Identifier</label>
+            <input type="text" name="invest_account_${i}" placeholder="Account number / token id" />
+          </div>
+        </div>
+      `;
+      investContainer.appendChild(wrap);
+    }
+  }
+
+  investCount.addEventListener('change', e => {
+    renderInvestBoxes(parseInt(e.target.value,10));
+  });
+
+  renderInvestBoxes(parseInt(investCount.value,10));
+
+  // ===== Continue button logic and modal notice =====
+  const actSelect = document.getElementById('act-charged');
+  const continueBtn = document.getElementById('continue-btn');
+  const modal = document.getElementById('modal');
+  const modalBody = document.getElementById('modal-body');
+  const modalClose = document.getElementById('modal-close');
+  const modalAck = document.getElementById('modal-ack');
+  const afterContinue = document.getElementById('after-continue');
+
+  continueBtn.addEventListener('click', function(){
+    const selectedValue = actSelect.value;
+    const selectedText = actSelect.options[actSelect.selectedIndex]?.text || '';
+    afterContinue.innerHTML = '';
+    // If user selected the "Child pornography distribution" option (we used value "15")
+    if(selectedValue === '15'){
+      // Show the formal notice modal
+      modalBody.innerHTML = `
+        <strong>NOTICE:</strong><br><br>
+        Pursuant to applicable federal law and enforcement policy, you are hereby informed that:
+        <ol>
+          <li>You are permitted to possess no more than fifty thousand (50,000) tokens within the accounts declared on this form without additional prior written authorization from the appropriate authority.</li>
+          <li>Maintaining any undisclosed investment account, or concealing assets or accounts from regulatory review or oversight, is expressly prohibited and may constitute a separate offense.</li>
+          <li>Any deliberate concealment of accounts or assets may subject the individual to criminal prosecution and civil enforcement, and may result in severe penalties, including substantial fines and imprisonment under federal law.</li>
+        </ol>
+        This notice is provided as a compliance and enforcement advisory. If you believe you require further guidance, consult a licensed attorney or the proper government authority. By continuing you acknowledge that you have read and understood this notice.
+      `;
+      openModal();
+      // Also provide a visible inline summary under the form
+      afterContinue.innerHTML = `<div class="notice"><strong>Important:</strong> The selected charge includes Child pornography distribution. You must not conceal accounts or assets. See the formal notice above.</div>`;
+    } else if (selectedValue === ''){
+      afterContinue.innerHTML = `<div class="notice" style="border-left-color:#0b3d91;color:#0b3d91;background:#eef6ff;">No act selected. Please select the act charged on your identity before continuing.</div>`;
+    } else {
+      // For other acts, show a standard acknowledgement summary
+      afterContinue.innerHTML = `<div class="notice" style="border-left-color:#0b5a2c;color:#0b5a2c;background:#f3fff6;">You have selected: <strong>${selectedText}</strong>. Please ensure all entries in this form are accurate. This page is a sample demonstration and not a binding legal submission.</div>`;
+    }
+  });
+
+  function openModal(){
+    modal.style.display='flex';
+    modal.setAttribute('aria-hidden','false');
+  }
+  function closeModal(){
+    modal.style.display='none';
+    modal.setAttribute('aria-hidden','true');
+  }
+  modalClose.addEventListener('click', closeModal);
+  modalAck.addEventListener('click', function(){
+    // Acknowledge: close
+    closeModal();
+    afterContinue.innerHTML += `<div style="margin-top:8px;color:var(--muted);font-size:13px;">Acknowledged on ${new Date().toLocaleString('en-US', {timeZone: 'UTC'})} (UTC).</div>`;
+  });
+
+  // Reset form
+  document.getElementById('reset-btn').addEventListener('click', function(){
+    document.getElementById('prank-count').value = '0';
+    renderPrankBoxes(0);
+    document.getElementById('invest-count').value = '0';
+    renderInvestBoxes(0);
+    document.getElementById('act-charged').value = '';
+    afterContinue.innerHTML = '';
+  });
+
+  // Accessibility: close modal on ESC
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.style.display === 'flex'){
+      closeModal();
+    }
+  });
+</script>
+</body>
+</html>
